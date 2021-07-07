@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 use Auth;
 use Session;
 use DB;
+use App\Models\Article;
 
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
+
+    public function index(){
+        $articles=Article::all();
+        return view('backend.reader_index')->with('articles',$articles);
+    }
+
     public function login(){
         return view('backend.auth.login');
     }

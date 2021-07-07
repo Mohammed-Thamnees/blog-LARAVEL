@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes(['register'=>false]);
 
 
+Route::get('/','App\Http\Controllers\FrontendController@index')->name('home');
 Route::get('/login','App\Http\Controllers\FrontendController@login')->name('login.form');
 Route::post('/login-submit','App\Http\Controllers\FrontendController@loginsubmit')->name('login.submit');
 Route::get('/logout','App\Http\Controllers\FrontendController@logout')->name('logout');

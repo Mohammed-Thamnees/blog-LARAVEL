@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -13,7 +14,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $article=Article::all();
+        //return $article;
+        return view('backend.pages.admin.article_list')->with('article',$article);
     }
 
     /**
@@ -23,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.admin.article_create');
     }
 
     /**
@@ -34,7 +37,18 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'heading'=>'required|string|min:3',
+            'category'=>'required|string',
+            'content'=>'required|string|min:5',
+        ]);
+
+        $data=$request->all();
+        $data['user_id']=Auth()->user()->id;
+        $data['category_id']=$request->category;
+        //return $data;
+        $status=Article::create($data);
+        return redirect()->route('article.index');
     }
 
     /**
@@ -45,7 +59,8 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article=Article::find($id);
+        return view('backend.pages.admin.article_view')->with('article',$article);
     }
 
     /**
@@ -56,7 +71,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $article=Article::find($id);
+        return view('backend.pages.admin.article_edit')->with('article',$article);
     }
 
     /**
@@ -68,7 +84,20 @@ class ArticleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $article=Article::find($id);
+
+        $this->validate($request,[
+            'heading'=>'required|string|min:3',
+            'category'=>'required|string',
+            'content'=>'required|string|min:5',
+        ]);
+
+        $data=$request->all();
+        $data['user_id']=Auth()->user()->id;
+        $data['category_id']=$request->category;
+
+        $status=$article->fill($data)->save();
+        return redirect()->route('article.index');
     }
 
     /**
@@ -79,6 +108,8 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article=Article::find($id);
+        $status=$article->delete();
+        return redirect()->route('article.index');
     }
 }
