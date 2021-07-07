@@ -28,5 +28,13 @@ Route::post('/register-submit','App\Http\Controllers\FrontendController@register
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
-Route::get('admin/comment', 'CommentController@index')->name('comments');
-Route::get('admin/article', 'ArticleController@adminArticles')->name('admin-articles');
+Route::get('admin/comment', 'App\Http\Controllers\CommentController@index')->name('comments');
+Route::get('admin/article', 'App\Http\Controllers\ArticleController@adminArticles')->name('admin-articles');
+Route::resource('/staff','App\Http\Controllers\StaffController');
+Route::resource('/user','App\Http\Controllers\UserController');
+Route::resource('/category','App\Http\Controllers\CategoryController');
+Route::resource('/article','App\Http\Controllers\ArticleController');
+Route::resource('/comment','App\Http\Controllers\CommentController');
+
+
+

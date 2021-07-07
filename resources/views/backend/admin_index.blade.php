@@ -64,9 +64,9 @@
 										</div>
 										<div class="db-info">
 											@php
-                                            $count=DB::table('comments')->count('id');
-                                            //dd($count);
-                                            @endphp
+                          $count=DB::table('comments')->count('id');
+                          //dd($count);
+                          @endphp
 											<h3>{{ $count }}</h3>
 											<h6>Total Comments</h6>
 										</div>										
@@ -114,7 +114,7 @@
               </tr>
               @foreach($latestComments as $key => $comment)
                 <tr>
-                  <td>{{++$key}}</td>
+                  <td>{{$loop->index +1}}</td>
                   <td>{{mb_substr($comment->content, 0, 20)}}...<br>
                     <span class="text-muted">{{$comment->created_at}}</span>
                   </td>

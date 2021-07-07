@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
-class CommentController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,8 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $category=Category::all();
+        return view('backend.pages.admin.category_list')->with('category',$category);
     }
 
     /**
@@ -23,7 +25,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.admin.category_create');
     }
 
     /**
@@ -34,7 +36,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string|min:2',
+        ]);
+
+        $data=$request->all();
+        $status=Category::create($data);
+        return redirect()->route('category.index');
     }
 
     /**
@@ -56,7 +64,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category=Category::find($id);
+        return view('backend.pages.admin.category_edit')->with('category',$category);
     }
 
     /**
@@ -68,7 +77,14 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category=Category::find($id);
+        $this->validate($request,[
+            'name'=>'required|string|min:2',
+        ]);
+
+        $data=$request->all();
+        $status=$category->fill($data)->save();
+        return redirect()->route('category.index');
     }
 
     /**
@@ -79,6 +95,8 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category=Category::find($id);
+        $status=$category->delete();
+        return redirect()->route('category.index');
     }
 }

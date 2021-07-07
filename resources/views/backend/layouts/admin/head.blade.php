@@ -19,4 +19,8 @@
     
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+
+    @stack('style')
+
+
 </head>

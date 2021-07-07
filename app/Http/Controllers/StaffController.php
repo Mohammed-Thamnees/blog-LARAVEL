@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Hash;
 
-class CommentController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +15,7 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -23,7 +25,7 @@ class CommentController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.admin.staff_register');
     }
 
     /**
@@ -34,7 +36,18 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'name'=>'required|string|min:2',
+            'email'=>'required|email',
+            'password'=>'required|confirmed',
+        ]);
+
+        $data=$request->all();
+        $data['password']=Hash::make($request->password);
+        $data['role']='staff';
+        //dd($data);
+        $status=User::create($data);
+        return redirect()->route('admin.home');
     }
 
     /**

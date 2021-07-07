@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class CommentController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,9 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $users=User::all();
+        //return $users;
+        return view('backend.pages.admin.users')->with('users',$users);
     }
 
     /**
@@ -56,7 +59,8 @@ class CommentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $users=User::find($id);
+        return view('backend.pages.admin.users_edit')->with('users',$users);
     }
 
     /**
@@ -68,7 +72,16 @@ class CommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $users=User::find($id);
+        $this->validate($request,[
+            'name'=>'required|string|min:2',
+            'email'=>'required|email',
+            'role'=>'required|string',
+        ]);
+
+        $data=$request->all();
+        $status=$users->fill($data)->save();
+        return redirect()->route('user.index');
     }
 
     /**
@@ -79,6 +92,8 @@ class CommentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user=User::find($id);
+        $status=$user->delete();
+        return redirect()->route('user.index');
     }
 }
