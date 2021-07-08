@@ -1,4 +1,4 @@
-@extends('backend.layouts.admin.master')
+@extends('backend.layouts.staff.master')
 @section('title','Home page')
     @section('content')
 

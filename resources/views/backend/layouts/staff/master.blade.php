@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    @include('backend.layouts.admin.head')
+    @include('backend.layouts.staff.head')
     <body>
 	
 		<!-- Main Wrapper -->
@@ -10,7 +10,7 @@
 			<!-- Header -->
 
             <div class="header">
-                @include('backend.layouts.admin.header')
+                @include('backend.layouts.staff.header')
             </div>
 
 			<!-- /Header -->
@@ -18,7 +18,7 @@
 			<!-- Sidebar -->
 
             <div class="sidebar" id="sidebar">
-                @include('backend.layouts.admin.sidebar')
+                @include('backend.layouts.staff.sidebar')
             </div>
 
 			<!-- /Sidebar -->
@@ -35,7 +35,7 @@
 
             <!-- Footer -->
 
-            @include('backend.layouts.admin.footer')
+            @include('backend.layouts.staff.footer')
             </div>
 
             <!-- /Footer -->

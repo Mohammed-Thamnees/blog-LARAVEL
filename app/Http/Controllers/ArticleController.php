@@ -16,7 +16,12 @@ class ArticleController extends Controller
     {
         $article=Article::all();
         //return $article;
-        return view('backend.pages.admin.article_list')->with('article',$article);
+        if(Auth()->user()->role=='admin'){
+            return view('backend.pages.admin.article_list')->with('article',$article);
+        }
+        else{
+            return view('backend.pages.staff.article_list')->with('article',$article);
+        }
     }
 
     /**
@@ -26,7 +31,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.admin.article_create');
+        return view('backend.pages.staff.article_create');
     }
 
     /**
@@ -72,7 +77,12 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article=Article::find($id);
-        return view('backend.pages.admin.article_edit')->with('article',$article);
+        if(Auth()->user()->role=='admin'){
+            return view('backend.pages.admin.article_edit')->with('article',$article);
+        }
+        else{
+            return view('backend.pages.staff.article_edit')->with('article',$article);
+        }
     }
 
     /**

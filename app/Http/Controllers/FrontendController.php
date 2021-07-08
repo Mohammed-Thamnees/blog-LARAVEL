@@ -45,10 +45,6 @@ class FrontendController extends Controller
 
     public function logout(){
         session::forget('user');
-        return redirect()->route('login.form');
-    }
-
-    public function register(){
-        return view('backend.auth.register');
+        return redirect()->route('home');
     }
 }

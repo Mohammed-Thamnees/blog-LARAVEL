@@ -5,7 +5,7 @@
                     <span>Main Menu</span>
                 </li>
                 <li class="active"> 
-                    <a href="{{ route('admin.home') }}"><i class="fas fa-th-large"></i> <span>Dashboard</span></a>
+                    <a href="{{ route('staff.home') }}"><i class="fas fa-th-large"></i> <span>Dashboard</span></a>
                 </li>
                 <li class="submenu">
                     <a href="index.html#"><i class="fas fa-user-graduate"></i> <span> Blogs</span> <span class="menu-arrow"></span></a>
@@ -20,12 +20,6 @@
                         <li><a href="{{ route('category.index') }}">Categories List</a></li>
                         <li><a href="{{ route('category.create') }}">Add Categories</a></li>
                     </ul>
-                </li>
-                <li>
-                    <a href="{{ route('staff.create') }}"><i class="fas fa-building"></i> <span> Add Staff</span></a>
-                </li>
-                <li>
-                    <a href="{{ route('user.index') }}"><i class="fas fa-book-reader"></i> <span> Users</span></a>
                 </li>
             </ul>
         </div>

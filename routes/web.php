@@ -24,11 +24,10 @@ Route::get('/','App\Http\Controllers\FrontendController@index')->name('home');
 Route::get('/login','App\Http\Controllers\FrontendController@login')->name('login.form');
 Route::post('/login-submit','App\Http\Controllers\FrontendController@loginsubmit')->name('login.submit');
 Route::get('/logout','App\Http\Controllers\FrontendController@logout')->name('logout');
-Route::get('/register','App\Http\Controllers\FrontendController@register')->name('register.form');
-Route::post('/register-submit','App\Http\Controllers\FrontendController@registersubmit')->name('register.submit');
 
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.home');
+Route::get('/staff/home', [App\Http\Controllers\HomeController::class, 'staff'])->name('staff.home');
 Route::get('admin/comment', 'App\Http\Controllers\CommentController@index')->name('comments');
 Route::get('admin/article', 'App\Http\Controllers\ArticleController@adminArticles')->name('admin-articles');
 Route::resource('/staff','App\Http\Controllers\StaffController');

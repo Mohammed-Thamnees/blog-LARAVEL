@@ -27,7 +27,12 @@ class HomeController extends Controller
     public function index()
     {
         $articleCategories = Article::all()->groupBy('category_name');
-        $latestComments = Comment::latest()->take(3)->get();
-        return view('backend.admin_index', compact('articleCategories', 'latestComments'));
+        return view('backend.admin_index', compact('articleCategories'));
+    }
+
+    public function staff()
+    {
+        $articleCategories = Article::all()->groupBy('category_name');
+        return view('backend.staff_index', compact('articleCategories'));
     }
 }

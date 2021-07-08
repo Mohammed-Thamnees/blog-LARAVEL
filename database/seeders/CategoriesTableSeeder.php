@@ -14,12 +14,20 @@ class CategoriesTableSeeder extends Seeder
     {
         $data=array(
             array(
-                'name' => 'Object Oriented Programming',
+                'name' => 'Classes in php',
             ),
-
             array(
                 'name' => 'Programming',
-            )
+            ),
+            array(
+                'name' => 'Java',
+            ),
+            array(
+                'name' => 'Python',
+            ),
+            array(
+                'name' => 'PHP',
+            ),
         );
 
         DB::table('categories')->insert($data);

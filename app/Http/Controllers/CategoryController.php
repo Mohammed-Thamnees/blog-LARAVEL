@@ -15,7 +15,12 @@ class CategoryController extends Controller
     public function index()
     {
         $category=Category::all();
-        return view('backend.pages.admin.category_list')->with('category',$category);
+        if(Auth()->user()->role=='admin'){
+            return view('backend.pages.admin.category_list')->with('category',$category);
+        }
+        else{
+            return view('backend.pages.staff.category_list')->with('category',$category);
+        }
     }
 
     /**
@@ -25,7 +30,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('backend.pages.admin.category_create');
+        return view('backend.pages.staff.category_create');
     }
 
     /**
@@ -65,7 +70,12 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category=Category::find($id);
-        return view('backend.pages.admin.category_edit')->with('category',$category);
+        if(Auth()->user()->role=='admin'){
+            return view('backend.pages.admin.category_edit')->with('category',$category);
+        }
+        else{
+            return view('backend.pages.staff.category_edit')->with('category',$category);
+        }
     }
 
     /**

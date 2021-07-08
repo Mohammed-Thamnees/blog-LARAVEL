@@ -64,7 +64,7 @@
 									{{-- <span class="span-or">or</span> --}}
 								</div>
 								  								
-								{{-- <div class="text-center dont-have">Don’t have an account? <a href="register.html">Register</a></div> --}}
+								 <div class="text-center dont-have"> <a href="{{ route('home') }}">Go back to Home</a></div>
 							</div>
                         </div>
                     </div>
