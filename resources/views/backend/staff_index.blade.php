@@ -98,7 +98,7 @@
                         @foreach($articleCategories as $categoryName => $articles)
                         <tr>
                           <td>{{$categoryName}}</td>
-                          <td><a href="{{route('admin-articles', ['category' => $articles->first()->category_id])}}" class="__cf_email__" data-cfemail="d1bbbeb9bf91b4a9b0bca1bdb4ffb2bebc">
+                          <td><a href="" class="__cf_email__" data-cfemail="d1bbbeb9bf91b4a9b0bca1bdb4ffb2bebc">
                             {{count($articles)}}
                           </a></td>
                         </tr>
